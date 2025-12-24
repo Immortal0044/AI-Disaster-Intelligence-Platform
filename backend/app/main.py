@@ -7,11 +7,6 @@ engine = create_engine(DATABASE_URL)
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
 
-
-
-
-
-
 from fastapi import FastAPI
 from pydantic import BaseModel
 from datetime import datetime
@@ -157,3 +152,16 @@ def get_disasters():
     return disasters
 
 
+import sys
+import os
+
+# Add project root to Python path
+PROJECT_ROOT = os.path.abspath(
+    os.path.join(os.path.dirname(__file__), "..", "..")
+)
+sys.path.append(PROJECT_ROOT)
+
+from ml.inference.predict import run_inference
+
+
+from ml.inference.predict import run_inference
